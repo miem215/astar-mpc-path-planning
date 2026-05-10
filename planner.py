@@ -13,7 +13,7 @@ class GridMap:
     def default_setup(cls):
         """Creates the barriers used in the project."""
         g = cls(18, 28)
-        # Static wall logic from your original code
+
         for r in range(3, 15): g.grid[r][9] = 1
         for c in range(9, 20): 
             g.grid[3][c] = 1
