@@ -23,7 +23,7 @@ class MPCController:
         self.W_OBS = w_obs
         self.R_SAFE = 2.5
 
-    def compute_step(self, pos, ref_path, obs):
+    def compute_step(self, pos, ref_path, obs, gmap):
         # Finds nearest point on A* path to track
         dists = [np.linalg.norm(pos - p) for p in ref_path]
         idx = min(int(np.argmin(dists)) + 2, len(ref_path) - 1)
@@ -36,6 +36,9 @@ class MPCController:
             for k in range(self.H):
                 delta = x[2*k: 2*k + 2]
                 p_temp = p_temp + delta
+                r_idx, c_idx = int(round(p_temp[0])), int(round(p_temp[1]))
+                if not gmap.is_free(r_idx, c_idx):
+                    total_cost += 500.0  # Add a huge penalty for hitting a static wall
                 total_cost += self.W_TRACK * np.sum((p_temp - ref[k])**2)
                 if obs.active:
                     d = np.linalg.norm(p_temp - np.array([obs.r, obs.c]))

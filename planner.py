@@ -13,7 +13,7 @@ class GridMap:
     def default_setup(cls):
         """Creates the barriers used in the project."""
         g = cls(18, 28)
-
+        
         for r in range(3, 15): g.grid[r][9] = 1
         for c in range(9, 20): 
             g.grid[3][c] = 1
@@ -31,7 +31,7 @@ class GridMap:
 
 def run_astar(gmap, start, goal):
     """Discrete Planning: A* Search Implementation."""
-    h = lambda r, c: abs(r - goal[0]) + abs(c - goal[1])
+    h = lambda r, c: abs(r - goal[0]) + abs(c - goal[1]) # distance to the goal
     open_set = [(h(*start), 0, start)]
     g_score = {start: 0}
     parent = {start: None}

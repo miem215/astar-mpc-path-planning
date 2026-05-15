@@ -20,7 +20,7 @@ def main():
     for t in range(100):
         if t == 6: obs.active = True
         obs.step(gmap)
-        pos = controller.compute_step(pos, astar_path, obs)
+        pos = controller.compute_step(pos, astar_path, obs, gmap)
         trajectory.append(pos.copy())
         
         if np.linalg.norm(pos - np.array(goal)) < 1.0:
