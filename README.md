@@ -57,4 +57,5 @@ A* search
 
 local replanner with MPC
 ![Dynamic MPC Performance Plot](figure/02_mpc_execution.png?raw=true)
+
 ---
