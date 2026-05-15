@@ -53,9 +53,9 @@ $$J_{smooth} = \|u_k - u_{k-1}\|^2$$
 
 ## Results
 A* search
-![A* seach path](figure/01_astar.png?raw=true)
+![A* seach path](figure/01_astar.png?v=1)
 
 local replanner with MPC
-![Dynamic MPC Performance Plot](figure/02_mpc_execution.png?raw=true)
+![Dynamic MPC Performance Plot](figure/02_mpc_execution.png?v=1)
 
 ---
