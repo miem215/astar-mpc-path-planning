@@ -13,7 +13,11 @@
 * **`controller.py`**: Implements the continuous state-space MPC and dynamic obstacle physics.
 * **`visualizer.py`**: A dedicated rendering module for generating simulation plots.
 * **`main.py`**: The entry point orchestrating the hierarchical data flow.
-
+---
+## To do's
+* currently MPC use point-mass model for the robot, we could add more dimensions to the model
+* the path generated from MPC is a bit jagged, we should add more complexity to generate more smooth path
+---
 ## Technical detail
 ### Model Predictive Control (MPC) Formulation
 
@@ -53,9 +57,9 @@ $$J_{smooth} = \|u_k - u_{k-1}\|^2$$
 
 ## Results
 A* search
-![A* seach path](figure/01_astar.png?v=1)
+![A* seach path](figure/01_astar.png?v=2)
 
 local replanner with MPC
-![Dynamic MPC Performance Plot](figure/02_mpc_execution.png?v=1)
+![Dynamic MPC Performance Plot](figure/02_mpc_execution.png?v=2)
 
 ---
