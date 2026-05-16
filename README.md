@@ -15,6 +15,8 @@
 * **`main.py`**: The entry point orchestrating the hierarchical data flow.
 ---
 ## To do's
+* add another obstacle on the path
+* introduce Neural Motion Prediction
 * currently MPC use point-mass model for the robot, we could add more dimensions to the model
 ---
 ## Technical detail
