@@ -17,13 +17,14 @@ class DynamicObstacle:
 
 class MPCController:
     """Local replanner using Gradient-based optimization."""
-    def __init__(self, horizon=5, w_track=3.0, w_obs=8.0):
+    def __init__(self, horizon=5, w_track=3.0, w_obs=8.0, w_smth = 2.0):
         self.H = horizon
         self.W_TRACK = w_track
         self.W_OBS = w_obs
         self.R_SAFE = 2.5
+        self.W_SMTH = w_smth 
 
-    def compute_step(self, pos, ref_path, obs, gmap):
+    def compute_step(self, pos, ref_path, obs, gmap, last_delta):
         # Finds nearest point on A* path to track
         dists = [np.linalg.norm(pos - p) for p in ref_path]
         idx = min(int(np.argmin(dists)) + 2, len(ref_path) - 1)
@@ -31,14 +32,18 @@ class MPCController:
         ref = np.array([ref_path[min(idx + k, len(ref_path) - 1)] for k in range(self.H)])
 
         def cost_function(x):
+            p_delta = last_delta
             p_temp = pos.copy()
             total_cost = 0.0
             for k in range(self.H):
                 delta = x[2*k: 2*k + 2]
+                diff = delta- p_delta
+                total_cost += self.W_SMTH * np.sum(diff**2) # Add a panelty for the path being jagged
+                p_delta = delta
                 p_temp = p_temp + delta
                 r_idx, c_idx = int(round(p_temp[0])), int(round(p_temp[1]))
                 if not gmap.is_free(r_idx, c_idx):
-                    total_cost += 100.0  # Add a huge penalty for hitting a static wall
+                    total_cost += 200.0  # Add a huge penalty for hitting a static wall
                 total_cost += self.W_TRACK * np.sum((p_temp - ref[k])**2)
                 if obs.active:
                     d = np.linalg.norm(p_temp - np.array([obs.r, obs.c]))

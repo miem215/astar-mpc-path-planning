@@ -16,13 +16,16 @@ def main():
     obs = DynamicObstacle(r=9.0, c=14.0)
     pos = np.array(start, dtype=float)
     trajectory = [pos.copy()]
+    last_delta = np.zeros(2) # Initial value
 
     for t in range(100):
         if t == 6: obs.active = True
         obs.step(gmap)
-        pos = controller.compute_step(pos, astar_path, obs, gmap)
-        trajectory.append(pos.copy())
         
+        new_pos = controller.compute_step(pos, astar_path, obs, gmap, last_delta)
+        trajectory.append(pos.copy())
+        last_delta = new_pos - pos
+        pos = new_pos
         if np.linalg.norm(pos - np.array(goal)) < 1.0:
             break
 
