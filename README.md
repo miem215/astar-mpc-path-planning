@@ -8,17 +8,17 @@
 * **Method**: Model Predictive Control using the **Receding Horizon** principle.
 * **Logic**: Minimizes a multi-objective cost function ($J$) that balances path tracking, movement smoothness, and obstacle proximity.
 
+### Open issue
+
+After doubling the grid resolution (from $18 \times 28$ to $36 \times 56$), the MPC controller exhibited "short-sighted" behavior and began penetrating static obstacles (walls). While the A* global planner successfully handled the higher resolution, the local MPC tracking failed to maintain physical feasibility
+
+---
 ## Files
 * **`planner.py`**: Handles environment discretization and the A* search algorithm.
 * **`controller.py`**: Implements the continuous state-space MPC and dynamic obstacle physics.
 * **`visualizer.py`**: A dedicated rendering module for generating simulation plots.
 * **`main.py`**: The entry point orchestrating the hierarchical data flow.
----
-## To do's
-* add another obstacle on the path
-* introduce Neural Motion Prediction
-* currently MPC use point-mass model for the robot, we could add more dimensions to the model
----
+
 ## Technical detail
 ### Model Predictive Control (MPC) Formulation
 
