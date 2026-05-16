@@ -16,7 +16,6 @@
 ---
 ## To do's
 * currently MPC use point-mass model for the robot, we could add more dimensions to the model
-* the path generated from MPC is a bit jagged, we should add more complexity to generate more smooth path
 ---
 ## Technical detail
 ### Model Predictive Control (MPC) Formulation
@@ -52,6 +51,7 @@ $$J_{smooth} = \|u_k - u_{k-1}\|^2$$
 | `dt` | 0.2s | Time step duration for the continuous simulation. |
 | `W_TRACK` | 3.0 | Importance of staying on the A* path. |
 | `W_OBS` | 10.0 | Importance of avoiding collisions (highest priority). |
+| `W_smth` | 2.0 | Importance of avoiding jagged motions (lowest priority). |
 | `R_SAFE` | 2.5 | Minimum distance (m) to maintain from obstacles. |
 
 
