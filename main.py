@@ -6,14 +6,14 @@ import numpy as np
 def main():
     # 1. Setup
     gmap = GridMap.default_setup()
-    start, goal = (9, 2), (6, 25)
+    start, goal = (18, 4), (12, 50)
 
     # 2. Global Plan (Discrete)
     astar_path, explored = run_astar(gmap, start, goal)
 
     # 3. Local Execution (Continuous)
     controller = MPCController()
-    obs = DynamicObstacle(r=9.0, c=14.0)
+    obs = DynamicObstacle(r=16.0, c=28.0)
     pos = np.array(start, dtype=float)
     trajectory = [pos.copy()]
     last_delta = np.zeros(2) # Initial value

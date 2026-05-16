@@ -17,7 +17,7 @@ class DynamicObstacle:
 
 class MPCController:
     """Local replanner using Gradient-based optimization."""
-    def __init__(self, horizon=5, w_track=3.0, w_obs=8.0, w_smth = 2.0):
+    def __init__(self, horizon=10, w_track=3.0, w_obs=8.0, w_smth = 2.0):
         self.H = horizon
         self.W_TRACK = w_track
         self.W_OBS = w_obs
@@ -43,7 +43,7 @@ class MPCController:
                 p_temp = p_temp + delta
                 r_idx, c_idx = int(round(p_temp[0])), int(round(p_temp[1]))
                 if not gmap.is_free(r_idx, c_idx):
-                    total_cost += 200.0  # Add a huge penalty for hitting a static wall
+                    total_cost += 5000  # Add a huge penalty for hitting a static wall
                 total_cost += self.W_TRACK * np.sum((p_temp - ref[k])**2)
                 if obs.active:
                     d = np.linalg.norm(p_temp - np.array([obs.r, obs.c]))

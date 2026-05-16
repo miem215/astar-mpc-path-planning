@@ -12,15 +12,15 @@ class GridMap:
     @classmethod
     def default_setup(cls):
         """Creates the barriers used in the project."""
-        g = cls(18, 28)
+        g = cls(36, 56)
         
-        for r in range(3, 15): g.grid[r][9] = 1
-        for c in range(9, 20): 
-            g.grid[3][c] = 1
-            g.grid[14][c] = 1
-        for r in (8, 9, 10): g.grid[r][9] = 0
-        for r in range(4, 14): g.grid[r][19] = 1
-        for r in (8, 9, 10): g.grid[r][19] = 0
+        for r in range(6, 30): g.grid[r][18] = 1
+        for c in range(18, 40): 
+            g.grid[6][c] = 1
+            g.grid[28][c] = 1
+        for r in (16, 17, 18, 19, 20): g.grid[r][18] = 0
+        for r in range(8, 28): g.grid[r][38] = 1
+        for r in (16, 17, 18, 19, 20): g.grid[r][38] = 0
         return g
 
     def is_free(self, r, c):
