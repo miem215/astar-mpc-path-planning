@@ -18,6 +18,7 @@
 After doubling the grid resolution (from $18 \times 28$ to $36 \times 56$), the MPC controller exhibited "short-sighted" behavior and began penetrating static obstacles (walls). While the A* global planner successfully handled the higher resolution, the local MPC tracking failed to maintain physical feasibility.
 
 ### Potential root cause
+
 Cost Plateauing: At higher resolutions, a flat wall penalty creates a "cost well" with no gradient. If the optimizer enters a wall, it sees a uniform cost in every direction within its short horizon, leading to a local minimum where the robot remains trapped in the obstacle.
 ---
 ## Files
