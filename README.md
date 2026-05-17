@@ -20,6 +20,7 @@ After doubling the grid resolution (from $18 \times 28$ to $36 \times 56$), the 
 ### Potential root cause
 
 Cost Plateauing: At higher resolutions, a flat wall penalty creates a "cost well" with no gradient. If the optimizer enters a wall, it sees a uniform cost in every direction within its short horizon, leading to a local minimum where the robot remains trapped in the obstacle.
+
 ---
 ## Files
 * **`planner.py`**: Handles environment discretization and the A* search algorithm.
